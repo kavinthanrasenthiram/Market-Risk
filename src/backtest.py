@@ -5,7 +5,7 @@ from scipy.stats import chi2
 from scipy.special import xlogy
 from src.risk_measures import var_hist, var_gaussien, var_kde
 from src.evt import var_evt
-from src.garch import garch_var_es
+from src.garch import garch_var_es, var_fhs
 
 
 def rolling_var(losses, window=500, start="2008", refit_every=20, k_evt=25):
@@ -33,6 +33,7 @@ def rolling_var(losses, window=500, start="2008", refit_every=20, k_evt=25):
             ligne["evt_" + niv] = var_evt(fenetre, alpha, k_evt)
             ligne["garch_n_" + niv] = garch_var_es(res_n, alpha)[0]
             ligne["garch_t_" + niv] = garch_var_es(res_t, alpha)[0]
+    
         lignes.append(ligne)
 
         if i % 500 == 0:
@@ -111,3 +112,21 @@ def backtest_table(resultats, methodes, alpha):
             ligne.update(basel_zones(h))
         lignes.append(ligne)
     return pd.DataFrame(lignes).set_index("méthode").round(3)
+
+def rolling_fhs(losses, window=500, start="2008", refit_every=20):
+    # VaR FHS jour par jour : même GARCH-t que rolling_var, mais quantile des chocs standardisés réels
+    lignes = []
+    for i, t in enumerate(range(window, len(losses))):
+        fenetre = losses.iloc[t - window : t]
+        modele = arch_model(-100 * fenetre, vol="GARCH", p=1, q=1, dist="t")
+        if i % refit_every == 0:
+            params = modele.fit(disp="off").params
+        res = modele.fix(params)
+        lignes.append({
+            "date": losses.index[t],
+            "fhs_95": var_fhs(res, 0.95),
+            "fhs_99": var_fhs(res, 0.99),
+        })
+        if i % 500 == 0:
+            print("jour", i, "-", losses.index[t].date())
+    return pd.DataFrame(lignes).set_index("date").loc[start:]

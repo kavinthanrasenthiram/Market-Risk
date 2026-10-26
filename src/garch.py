@@ -36,3 +36,13 @@ def garch_var_es(resultat, alpha):
     var = mu_pertes + sigma_demain * z
     es = mu_pertes + sigma_demain * es_z
     return var, es
+
+
+
+def var_fhs(resultat, alpha):
+    # FHS : sigma de demain (GARCH) x quantile des chocs standardisés réels (au lieu de la loi de Student)
+    prevision = resultat.forecast(horizon=1)
+    sigma_demain = np.sqrt(prevision.variance.iloc[-1, 0]) / 100
+    mu_pertes = -resultat.params["mu"] / 100
+    z = -resultat.std_resid.dropna()          # chocs standardisés, côté pertes
+    return mu_pertes + sigma_demain * np.quantile(z, alpha)
