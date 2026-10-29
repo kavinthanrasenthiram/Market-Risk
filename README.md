@@ -47,11 +47,11 @@ Conclusion : une bonne VaR doit à la fois réagir aux changements de volatilit�
 
 ## Tester sur votre propre portefeuille
 
-Le notebook `06_Var&ES_Demain.ipynb` applique la FHS à n'importe quel portefeuille d'actions : vous entrez vos actions (symboles Yahoo Finance, par exemple `BNP.PA`) et les montants investis, et il calcule la VaR et l'Expected Shortfall pour le lendemain, en % et en euros.
+Le notebook 06_Var&ES_Demain.ipynb applique la FHS à n'importe quel portefeuille d'actions : vous entrez vos actions (symboles Yahoo Finance, par exemple BNP.PA) et les montants investis, et il calcule la VaR et l'Expected Shortfall pour le lendemain, en % et en euros.
 
 Il s'ouvre directement dans Google Colab, sans rien installer :
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/kavinthanrasenthiram/market-risk/blob/master/notebooks/06_Var&ES_Demain.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/kavinthanrasenthiram/Market-Risk/blob/master/notebooks/06_Var&ES_Demain.ipynb)
 
 Modifiez la liste des actions dans la section 1, puis lancez toutes les cellules (menu *Exécution*, puis *Tout exécuter*).
 
@@ -64,8 +64,8 @@ Modifiez la liste des actions dans la section 1, puis lancez toutes les cellules
 ## Lancer le projet
 
 ```
-git clone https://github.com/kavinthanrasenthiram/market-risk.git
-cd market-risk
+git clone https://github.com/kavinthanrasenthiram/Market-Risk.git
+cd Market-Risk
 python -m venv .venv
 .venv\Scripts\activate
 pip install -r requirements.txt
@@ -76,9 +76,9 @@ Puis lancer les notebooks dans l'ordre, de 01 à 06.
 
 ## Organisation
 
-- `src/` : les fonctions (données, VaR/ES, GARCH, EVT, backtest)
-- `notebooks/` : un notebook par partie, avec les résultats et les explications (le 06 calcule la VaR de demain pour un portefeuille au choix)
-- `figures/` : les graphiques
+- src/ : les fonctions (données, VaR/ES, GARCH, EVT, backtest)
+- notebooks/ : un notebook par partie, avec les résultats et les explications (le 06 calcule la VaR de demain pour un portefeuille au choix)
+- figures/ : les graphiques
 
 ## Références
 
