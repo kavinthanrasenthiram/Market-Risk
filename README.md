@@ -51,7 +51,7 @@ Le notebook `06_Var&ES_Demain.ipynb` applique la FHS à n'importe quel portefeui
 
 Il s'ouvre directement dans Google Colab, sans rien installer :
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/kavinthanrasenthiram/market-risk/blob/master/notebooks/06_var_demain.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/kavinthanrasenthiram/market-risk/blob/master/notebooks/06_Var&ES_Demain.ipynb)
 
 Modifiez la liste des actions dans la section 1, puis lancez toutes les cellules (menu *Exécution*, puis *Tout exécuter*).
 
