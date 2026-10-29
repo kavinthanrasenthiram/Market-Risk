@@ -30,7 +30,7 @@ def compute_returns(prices):
     return returns
 
 def portfolio_losses(returns):
-    # Rendement du portefeuille équipondéré = moyenne des 5 actions chaque jour
+    # Rendement du portefeuille équipondéré > moyenne des 5 actions chaque jour
     port_returns = returns.mean(axis=1)
     # Perte = - rendement 
     losses = - port_returns

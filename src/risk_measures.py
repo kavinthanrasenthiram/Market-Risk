@@ -14,7 +14,7 @@ def es_hist(losses,alpha):
         if element >= var:
             pires.append(element)
     es=np.mean(pires) # car pires est une liste
-    return es # voir cahier un autre methode plus simple avec pandas avc return losses[losses>=var].mean()
+    return es # voir cahier ya une autre methode plus simple avec pandas avc return losses[losses>=var].mean()
 
 #VAR/ES gaussienne
 
@@ -39,7 +39,7 @@ def es_gaussien(losses,alpha):
 
 def silverman_bandwidth(losses):  # pour trouver h , si le temp  faire la validation croisée : 
     # on teste plein de valeurs de h et on garde celle qui colle le mieux aux données
-    n = len(losses) # nb de pertes
+    n = len(losses) 
     sigma = losses.std()
     iqr = np.quantile(losses, 0.75) - np.quantile(losses, 0.25)
     return 0.9 * min(sigma, iqr / 1.34) * n ** (-1/5)

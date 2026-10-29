@@ -47,7 +47,7 @@ def hits(pertes, var):
     # 1 si la perte dépasse la VaR, 0 sinon
     return (pertes > var).astype(int)
 
-
+# Lest test statistique
 def kupiec(h, alpha):
     # H0 : taux de dépassement = 1-alpha Renvoie la p-value
     p = 1 - alpha
@@ -91,7 +91,7 @@ def basel_zones(h, window=250):
 
 
 def backtest_table(resultats, methodes, alpha):
-    # Tableau récapitulatif : une ligne par méthode
+    # Tableau récapitulatif 
     niv = str(int(alpha * 100))
     lignes = []
     for m in methodes:

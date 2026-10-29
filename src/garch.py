@@ -4,19 +4,19 @@ from arch import arch_model
 
 
 def fit_garch(port_returns, dist="t"):
-    # Estime un GARCH(1,1) sur les rendements (en % pour aider l'optimiseur)
+    # Estime un GARCH(1,1) sur les rendements 
     modele = arch_model(100 * port_returns, vol="GARCH", p=1, q=1, dist=dist)
     resultat = modele.fit(disp="off")
     return resultat
 
 
 def garch_var_es(resultat, alpha):
-    # 1. sigma( lecart type en gros le volatilite) de demain (prévision), en décimal
+    # 1. sigma( lecart type en gros la volatilite) de demain (prévision), en décimal
     prevision = resultat.forecast(horizon=1)
     variance_demain = prevision.variance.iloc[-1, 0]
     sigma_demain = np.sqrt(variance_demain) / 100
 
-    # 2. perte moyenne (perte = - rendement), en décimal
+    # 2. perte moyenne (perte = - rendement), en decimal
     mu_pertes = -resultat.params["mu"] / 100
 
     # 3. quantile z et ES de la loi des chocs (variance 1)
@@ -40,7 +40,7 @@ def garch_var_es(resultat, alpha):
 
 
 def var_fhs(resultat, alpha):
-    # FHS : sigma de demain (GARCH) x quantile des chocs standardisés réels (au lieu de la loi de Student)
+    # FHS , sigma de demain (GARCH) x quantile des chocs standardisés réels (au lieu de la loi de Student)
     prevision = resultat.forecast(horizon=1)
     sigma_demain = np.sqrt(prevision.variance.iloc[-1, 0]) / 100
     mu_pertes = -resultat.params["mu"] / 100
