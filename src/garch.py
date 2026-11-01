@@ -11,7 +11,7 @@ def fit_garch(port_returns, dist="t"):
 
 
 def garch_var_es(resultat, alpha):
-    # 1. sigma( lecart type en gros la volatilite) de demain (prévision), en décimal
+    # 1. sigma( l'ecart type c'est à dire la volatilite) de demain (prévision), en décimal
     prevision = resultat.forecast(horizon=1)
     variance_demain = prevision.variance.iloc[-1, 0]
     sigma_demain = np.sqrt(variance_demain) / 100
