@@ -35,9 +35,8 @@ def es_gaussien(losses,alpha):
     return es
 
 
-#KDE
 
-def silverman_bandwidth(losses):  # pour trouver h , si le temp  faire la validation croisée : 
+def silverman_bandwidth(losses):  # pour trouver h , si le temps faire la validation croisée : 
     # on teste plein de valeurs de h et on garde celle qui colle le mieux aux données
     n = len(losses) 
     sigma = losses.std()
