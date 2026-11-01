@@ -9,7 +9,7 @@ from src.garch import garch_var_es, var_fhs
 
 
 def rolling_var(losses, window=500, start="2008", refit_every=20, k_evt=25):
-    # Chaque jour t : VaR 95 % et 99 % de chaque méthode, calculée avec les 500 jours AVANT t
+    # Chaque jour t : VaR 95 % et 99 % de chaque méthode , calculée avec les 500 jours AVANT t
     lignes = []
     for i, t in enumerate(range(window, len(losses))):
         fenetre = losses.iloc[t - window : t]
@@ -47,7 +47,7 @@ def hits(pertes, var):
     # 1 si la perte dépasse la VaR, 0 sinon
     return (pertes > var).astype(int)
 
-# Lest test statistique
+# Les test statistique
 def kupiec(h, alpha):
     # H0 : taux de dépassement = 1-alpha Renvoie la p-value
     p = 1 - alpha
@@ -114,7 +114,7 @@ def backtest_table(resultats, methodes, alpha):
     return pd.DataFrame(lignes).set_index("méthode").round(3)
 
 def rolling_fhs(losses, window=500, start="2008", refit_every=20):
-    # VaR FHS jour par jour : même GARCH-t que rolling_var, mais quantile des chocs standardisés réels
+    # VaR FHS jour par jour : même GARCH-t que rolling_var, mais quantile des chocs standardisé réels
     lignes = []
     for i, t in enumerate(range(window, len(losses))):
         fenetre = losses.iloc[t - window : t]
